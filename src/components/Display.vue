@@ -99,6 +99,11 @@ export default {
       return item.id === 1;
     },
     submitOrder() {
+      alert(
+        `Final Order: ${this.items.map(
+          item => `${item.name}: $${item.price}`
+        )}. Total: ${this.total}`
+      );
       console.log(
         `Final Order: ${this.items.map(
           item => `${item.name}: $${item.price}`
