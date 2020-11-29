@@ -43,7 +43,7 @@ import Item from "./Item";
 import { products } from "../data/mocked-data";
 export default {
   components: {
-    Item
+    Item,
   },
   data: () => ({
     products,
@@ -55,19 +55,19 @@ export default {
         label: "ID",
         width: 40,
         numeric: true,
-        centered: true
+        centered: true,
       },
       {
         field: "name",
         label: "Product name",
-        centered: true
+        centered: true,
       },
       {
         field: "price",
         label: "Price",
-        centered: true
-      }
-    ]
+        centered: true,
+      },
+    ],
   }),
   methods: {
     handleAddedProduct(product) {
@@ -75,15 +75,15 @@ export default {
       this.handleTotalCost();
     },
     handleRemovedProduct(id) {
-      const found = this.items.find(product => product.id === id);
-      if (found) {
-        this.items.pop(found);
+      const found = this.items.findIndex((product) => product.id === id);
+      if (found > -1) {
+        this.items.splice(found, 1);
         this.handleTotalCost();
       }
     },
     handleTotalCost() {
       this.total = 0;
-      this.items.map(item => {
+      this.items.map((item) => {
         this.total = this.total + item.price;
       });
 
@@ -101,16 +101,16 @@ export default {
     submitOrder() {
       alert(
         `Final Order: ${this.items.map(
-          item => `${item.name}: $${item.price}`
+          (item) => `${item.name}: $${item.price}`
         )}. Total: ${this.total}`
       );
       console.log(
         `Final Order: ${this.items.map(
-          item => `${item.name}: $${item.price}`
+          (item) => `${item.name}: $${item.price}`
         )}. Total: ${this.total}`
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
